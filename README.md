@@ -128,33 +128,6 @@ NDHSCleaner                 DatasetAssembler          FeatureImportance
 MaternalEDA
 ```
 
----
-
-## Setup
-
-```bash
-git clone https://github.com/YOUR_USERNAME/mamidey-ai.git
-cd mamidey-ai
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-### Requirements
-
-```
-pandas>=2.0
-numpy>=1.24
-matplotlib>=3.7
-seaborn>=0.12
-scikit-learn>=1.3
-pyreadstat>=1.2
-imbalanced-learn>=0.11
-xgboost>=2.0
-openpyxl>=3.1
-jupyter>=1.0
-```
-
 ## Model Targets
 
 | Metric | Target |
