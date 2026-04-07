@@ -1,0 +1,12 @@
+# MamaDey_AI - Requirements
+pandas 
+numpy 
+matplotlib 
+seaborn 
+scikit-learn 
+pyreadstat 
+imbalanced-learn 
+xgboost 
+openpyxl 
+jupyter 
+ipykernel
