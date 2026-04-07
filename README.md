@@ -45,13 +45,13 @@ mamidey_ai/
 
 | Phase | Status |
 |---|---|
-| Proposal and literature review | ✅ Complete |
-| Data acquisition (NDHS 2018) | ✅ Complete |
-| Data cleaning and EDA | ✅ Complete |
-| Feature engineering and synthetic data | ✅ Complete |
-| Model development (Random Forest, XGBoost, LR) | 🔄 In progress |
-| Framework evaluation | ⬜ Pending |
-| Dissertation writing and submission | ⬜ Pending - 24 May 2026 |
+| Proposal and literature review | Complete |
+| Data acquisition (NDHS 2018) | Complete |
+| Data cleaning and EDA | Complete |
+| Feature engineering and synthetic data | Complete |
+| Model development (Random Forest, XGBoost, LR) | In progress |
+| Framework evaluation | Pending |
+| Dissertation writing and submission | Pending - 24 May 2026 |
 
 ---
 
