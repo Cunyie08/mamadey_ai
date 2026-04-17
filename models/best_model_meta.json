@@ -1,0 +1,6 @@
+{
+  "best_model": "XGBoost",
+  "auc_roc": 0.8586,
+  "sensitivity": 0.6047,
+  "threshold": 0.08
+}
