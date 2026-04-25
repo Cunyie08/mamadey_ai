@@ -1,4 +1,4 @@
-# MamiDey AI
+# MamaDey AI
 
 **Title:** An AI-Enabled, Community-Integrated Framework for Early Maternal Risk Prediction in Ogun State, Nigeria
 
@@ -12,7 +12,7 @@
 
 Nigeria accounts for nearly one-fifth of global maternal deaths. In Ogun State, the primary drivers of maternal mortality are not the absence of services; they are **data invisibility**, disrupted continuity of care, and the structural inability of existing health information systems to act on risk before it becomes fatal.
 
-MamiDey AI proposes a three-layer, AI-enabled framework that:
+MamaDey AI proposes a three-layer, AI-enabled framework that:
 
 1. **Generates born-digital community-level data** through Community Health Worker (CHW) mobile tools and women's group engagement; bypassing the paper-based transcription bottleneck that currently degrades PHC data quality
 2. **Applies supervised machine learning** to classify pregnant women as low, medium, or high risk; targeting AUC-ROC ≥ 0.80
@@ -25,7 +25,7 @@ The framework is designed to complement, not replace existing Nigerian governmen
 ## Project Structure
 
 ```
-mamidey_ai/
+MamaDey_ai/
 ├── data/
 │   ├── raw/          <- Downloaded NDHS 2018 files (NGIR7BDT.DTA etc.) 
 │   ├── processed/    <- Cleaned datasets output by notebooks
@@ -59,12 +59,12 @@ mamidey_ai/
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  Layer 1: Community Data Input (MamiCare)              │
-│  MamiCare app · CHW visits · Women's groups (NFWP)      │
+│  Layer 1: Community Data Input (MamaCare)              │
+│  MamaCare app · CHW visits · Women's groups (NFWP)      │
 └────────────────────────┬────────────────────────────────┘
                          ↓
 ┌─────────────────────────────────────────────────────────┐
-│  Layer 2: AI Engine (MamiDey AI)                       │
+│  Layer 2: AI Engine (MamaDey AI)                       │
 │  Data integration · Risk prediction · RAG triage        │
 └────────────────────────┬────────────────────────────────┘
                          ↓
@@ -86,7 +86,7 @@ mamidey_ai/
 
 **Supplementary:** Synthetically generated community records (n=800) modelling the ANC dropout population not captured in the NDHS; women who deliver at home after disengaging from formal care.
 
-> ⚠️ **Data files are not included in this repository.** The NDHS data is governed by DHS Program terms of use which prohibit redistribution. To replicate this analysis, register at [dhsprogram.com](https://dhsprogram.com) and request the Nigeria 2018 Individual Recode (NGIR7BDT).
+> **Data files are not included in this repository.** The NDHS data is governed by DHS Program terms of use which prohibit redistribution. To replicate this analysis, register at [dhsprogram.com](https://dhsprogram.com) and request the Nigeria 2018 Individual Recode (NGIR7BDT).
 
 ---
 
@@ -156,16 +156,16 @@ This framework is designed to complement existing Nigerian government maternal h
 
 ## Future Work
 
-Following dissertation submission (May 2026), a subsequent phase of development is planned to translate the MamiDey AI framework into a production-ready application, subject to regulatory approval by relevant Nigerian health authorities and structured stakeholder engagement with the Ogun State Ministry of Health and MAMII programme partners.
+Following dissertation submission (May 2026), a subsequent phase of development is planned to translate the MamaDey AI framework into a production-ready application, subject to regulatory approval by relevant Nigerian health authorities and structured stakeholder engagement with the Ogun State Ministry of Health and MAMII programme partners.
 
 ---
 
 ## Citation
 
 ```bibtex
-@mastersthesis{fagbayi2026mamidey,
+@mastersthesis{fagbayi2026MamaDey,
   author  = {Fagbayi, Kanyisola},
-  title   = {MamiDey AI: An Artificial Intelligence-Enabled, Community-Integrated
+  title   = {MamaDey AI: An Artificial Intelligence-Enabled, Community-Integrated
              Framework for Early Maternal Risk Prediction in Ogun State, Nigeria},
   school  = {University of East London},
   year    = {2026},
