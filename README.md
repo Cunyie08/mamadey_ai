@@ -10,7 +10,7 @@
 
 ## Overview
 
-Nigeria accounts for nearly one-fifth of global maternal deaths. In Ogun State, the primary drivers of maternal mortality are not the absence of services; they are **data invisibility**, disrupted continuity of care, and the structural inability of existing health information systems to act on risk before it becomes fatal.
+Nigeria accounts for more than a quarter of global maternal deaths (28.7% in 2023, UN MMEIG estimates). In Ogun State, the primary drivers of maternal mortality are not the absence of services; they are **data invisibility**, disrupted continuity of care, and the structural inability of existing health information systems to act on risk before it becomes fatal.
 
 MamaDey AI proposes a three-layer, AI-enabled framework that:
 
