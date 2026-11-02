@@ -212,8 +212,3 @@ Following dissertation submission (May 2026), a subsequent phase of development 
 Primary dataset: Nigeria Demographic and Health Survey 2018, provided by the DHS Program (ICF International) and the National Population Commission of Nigeria.
 
 ---
-
-## License
-
-Code: [MIT License](LICENSE)  
-Dissertation text: All rights reserved - Kanyisola Fagbayi, 2026
