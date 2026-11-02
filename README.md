@@ -2,7 +2,7 @@
 
 **Title:** An AI-Enabled, Community-Integrated Framework for Early Maternal Risk Prediction in Ogun State, Nigeria
 
-**MSc Dissertation** Data Science, University of East London (2026)  
+**MSc Dissertation** Data Science, University of East London (2026)
 **Author:** Kanyisola Fagbayi
 **Submission:** 24 May 2026
 
@@ -35,6 +35,7 @@ MamaDey_ai/
 │   ├── week_4_5_ndhs_feature_engineering.ipynb <- Feature engineering + synthetic data
 │   ├── week_6_7_baseline_models.ipynb          <- Logistic regression + Random Forest
 │   └── week_8_10_xgboost_evaluation.ipynb      <- XGBoost, SMOTE, final evaluation
+├── app/              <- CHW screening web prototype (index.html)
 ├── models/           <- Saved model objects (.pkl)
 ├── outputs/          <- Figures, reports, CSVs for dissertation
 ├── scripts/          <- Any reusable utility functions
@@ -43,16 +44,34 @@ MamaDey_ai/
 
 ## Research Status
 
-| Phase                                         | Status      |
-|-----------------------------------------------|-------------|
-| Proposal and literature review                | Complete    |
-| Data acquisition (NDHS 2018)                  | Complete    |
-| Data cleaning and EDA                         | Complete    |
-| Feature engineering and synthetic data        | Complete    |
-| Model development (Random Forest, XGBoost, LR)| Complete    |
-| SHAP interpretability analysis                | Complete    |
-| Dissertation writing                          | Complete    | 
-| Submission                                    | Complete (May 2026; award pending conferment) |
+| Phase                                          | Status                                        |
+| ---------------------------------------------- | --------------------------------------------- |
+| Proposal and literature review                 | Complete                                      |
+| Data acquisition (NDHS 2018)                   | Complete                                      |
+| Data cleaning and EDA                          | Complete                                      |
+| Feature engineering and synthetic data         | Complete                                      |
+| Model development (Random Forest, XGBoost, LR) | Complete                                      |
+| SHAP interpretability analysis                 | Complete                                      |
+| Dissertation writing                           | Complete                                      |
+| Submission                                     | Complete (May 2026; award pending conferment) |
+
+---
+
+## Working Prototype: CHW Antenatal Screening (November 2026)
+
+A working web prototype is in [`app/index.html`](app/index.html). Download the file and open it in any browser; it runs fully offline, and nothing entered leaves the device.
+
+A community health worker records consent and an ID (no names), answers about fifteen questions that can be asked during a home visit, and receives a risk result, the factors raising risk most, and a referral instruction.
+
+**Model.** The dissertation models used delivery and postnatal features, which a health worker cannot know during pregnancy. The prototype uses a retrained Random Forest on 22 pregnancy-only features ([`scripts/train_antenatal_model.py`](scripts/train_antenatal_model.py)). SMOTE runs inside each cross-validation fold, and the alert threshold is chosen from out-of-fold training predictions, not the test set. `living_children` is excluded because it reflects whether the index child survived.
+
+| Held-out test (673 records) | Result |
+| --- | --- |
+| High-risk women flagged | 35 of 43 (sensitivity 0.81) |
+| AUC-ROC | 0.73 |
+| Specificity | 0.50 (about half of low-risk women also flagged) |
+
+**Status:** research prototype, not yet piloted with community health workers and not for clinical decisions. The next step is a supervised pilot in Ogun State, whose data will be used to retrain and recalibrate the model.
 
 ---
 
@@ -84,7 +103,7 @@ MamaDey_ai/
 From the Southwest Nigeria analytical sample (NDHS 2018):
 
 | Metric                              | Result        |
-|-------------------------------------|---------------|
+| ----------------------------------- | ------------- |
 | ANC completion (4+ visits)          | 88.5%         |
 | Home delivery rate                  | 17.7% (n=434) |
 | Completed ANC but delivered at home | 10.6% (n=272) |
@@ -96,20 +115,21 @@ From the Southwest Nigeria analytical sample (NDHS 2018):
 **Headline finding:** 88.5% of women completed the full WHO-recommended ANC schedule, yet 17.7% still delivered at home, evidencing that ANC attendance data alone is insufficient as a predictor of delivery risk, and that the continuity gap between antenatal engagement and facility delivery is the primary data visibility failure the framework addresses.
 
 ---
+
 ## Notebooks
 
 All notebooks follow an object-oriented pipeline pattern.
 
-| Notebook                                  | Description                                               |
-|-------------------------------------------|-----------------------------------------------------------|
+| Notebook                                    | Description                                               |
+| ------------------------------------------- | --------------------------------------------------------- |
 | `week_1_3_ndhs_eda.ipynb`                 | Data loading, cleaning, EDA, gap report                   |
 | `week_4_5_ndhs_feature_engineering.ipynb` | Feature engineering, synthetic data, train/test split     |
 | `week_6_7_baseline_models.ipynb`          | Logistic Regression baseline, Random Forest, GridSearchCV |
 | `week_8_10_xgboost_evaluation.ipynb`      | XGBoost, SMOTE, final evaluation metrics, SHAP            |
 
 ---
-### Pipeline architecture
 
+### Pipeline architecture
 
 Weeks 1-3                   Weeks 4-5                 Weeks 6-10
 ─────────────               ──────────────            ─────────────────
@@ -124,11 +144,11 @@ MaternalEDA                                           SHAPAnalyser
 
 All three models evaluated on held-out test set (n=673, 6.4% adverse outcome rate):
 
-| Model               | AUC-ROC  | Sensitivity | Specificity | F1-Score | Brier Score | CV AUC Mean |
-|---------------------|----------|-------------|-------------|----------|-------------|-------------|
-| Logistic Regression | 0.8120   | 0.6512      | 0.8397      | 0.3256   | 0.1443      | 0.8999      |
-| **Random Forest**   |**0.8444**| **0.6977**  | **0.7952**  |**0.2970**| **0.0521**  | **0.9782**  |
-| XGBoost             | 0.8586   | 0.6047      | 0.8762      | 0.3537   | 0.0533      | 0.9726      |
+| Model                   | AUC-ROC          | Sensitivity      | Specificity      | F1-Score         | Brier Score      | CV AUC Mean      |
+| ----------------------- | ---------------- | ---------------- | ---------------- | ---------------- | ---------------- | ---------------- |
+| Logistic Regression     | 0.8120           | 0.6512           | 0.8397           | 0.3256           | 0.1443           | 0.8999           |
+| **Random Forest** | **0.8444** | **0.6977** | **0.7952** | **0.2970** | **0.0521** | **0.9782** |
+| XGBoost                 | 0.8586           | 0.6047           | 0.8762           | 0.3537           | 0.0533           | 0.9726           |
 
 **Recommended model: Random Forest** highest sensitivity (0.6977), correctly identifying 30 of 43 adverse cases. In clinical deployment, sensitivity is the priority metric: a missed high-risk woman is a more costly error than an unnecessary CHW alert.
 
@@ -148,23 +168,22 @@ A v2 pipeline will apply SMOTE inside an `imblearn` Pipeline during cross-valida
 
 Features driving predictions (mean absolute SHAP value, Random Forest):
 
-| Rank | Feature | Mean \|SHAP\| | Clinical meaning |
-|---|---|---|---|
-| 1 | anc_urine_sample | 0.0666 | Absence of basic pre-eclampsia screening |
-| 2 | living_children | 0.0470 | Parity risk |
-| 3 | postnatal_check | 0.0433 | Post-delivery care engagement |
-| 4 | skilled_birth | 0.0365 | Trained clinical attendance at delivery |
-| 5 | wealth_index | 0.0291 | Socioeconomic vulnerability |
-| 6 | anc_provider_tba | 0.0275 | TBA involvement at ANC |
-| 7 | anc_visits | 0.0267 | ANC attendance frequency |
+| Rank | Feature          | Mean \|SHAP\| | Clinical meaning                         |
+| ---- | ---------------- | ------------- | ---------------------------------------- |
+| 1    | anc_urine_sample | 0.0666        | Absence of basic pre-eclampsia screening |
+| 2    | living_children  | 0.0470        | Parity risk                              |
+| 3    | postnatal_check  | 0.0433        | Post-delivery care engagement            |
+| 4    | skilled_birth    | 0.0365        | Trained clinical attendance at delivery  |
+| 5    | wealth_index     | 0.0291        | Socioeconomic vulnerability              |
+| 6    | anc_provider_tba | 0.0275        | TBA involvement at ANC                   |
+| 7    | anc_visits       | 0.0267        | ANC attendance frequency                 |
 
 ---
 
-
 ## Dataset
 
-**Primary dataset:** Nigeria Demographic and Health Survey (NDHS) 2018 Individual Recode  
-**Source:** [DHS Program](https://dhsprogram.com) - publicly available, requires free registration  
+**Primary dataset:** Nigeria Demographic and Health Survey (NDHS) 2018 Individual Recode
+**Source:** [DHS Program](https://dhsprogram.com) - publicly available, requires free registration
 **Geographic filter:** South-West zone -> analytical sample of ~2,563 women with recent births
 
 **Supplementary:** Synthetically generated community records (n=800) modelling the ANC dropout population not captured in the NDHS; women who deliver at home after disengaging from formal care.
@@ -215,5 +234,5 @@ Primary dataset: Nigeria Demographic and Health Survey 2018, provided by the DHS
 
 ## License
 
-Code: [MIT License](LICENSE)  
+Code: [MIT License](LICENSE)
 Dissertation text: All rights reserved - Kanyisola Fagbayi, 2026
