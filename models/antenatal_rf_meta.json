@@ -1,0 +1,150 @@
+{
+  "model": "RandomForest (SMOTE inside pipeline)",
+  "trained_on": "2026-11-02",
+  "features": [
+    "residence",
+    "age",
+    "education_level",
+    "wealth_index",
+    "total_children_ever_born",
+    "married",
+    "anc_visits",
+    "anc_timing_months",
+    "anc_any",
+    "anc_4plus",
+    "anc_dropout",
+    "anc_late_entry",
+    "anc_provider_doc",
+    "anc_provider_nurse",
+    "anc_provider_tba",
+    "anc_blood_pressure",
+    "anc_urine_sample",
+    "anc_iron_tablets",
+    "parity_wealth_risk",
+    "late_and_dropout",
+    "adolescent",
+    "advanced_maternal_age"
+  ],
+  "excluded_post_delivery_features": [
+    "delivery_csection",
+    "tba_any",
+    "skilled_birth",
+    "delivery_alone",
+    "postnatal_check",
+    "delivery_location_enc",
+    "no_skilled_care",
+    "living_children"
+  ],
+  "threshold": 0.11,
+  "threshold_rule": "highest threshold with >= 70% sensitivity on out-of-fold training predictions",
+  "cv_out_of_fold": {
+    "auc_roc": 0.6778,
+    "sensitivity": 0.7688,
+    "specificity": 0.5026,
+    "brier": 0.0692,
+    "TP": 133,
+    "FP": 1252,
+    "TN": 1265,
+    "FN": 40
+  },
+  "held_out_test": {
+    "auc_roc": 0.7324,
+    "sensitivity": 0.8605,
+    "specificity": 0.4365,
+    "brier": 0.066,
+    "TP": 37,
+    "FP": 355,
+    "TN": 275,
+    "FN": 6
+  },
+  "feature_importance": [
+    [
+      "anc_provider_tba",
+      0.1265
+    ],
+    [
+      "anc_urine_sample",
+      0.1118
+    ],
+    [
+      "anc_blood_pressure",
+      0.1022
+    ],
+    [
+      "anc_timing_months",
+      0.0929
+    ],
+    [
+      "anc_visits",
+      0.0774
+    ],
+    [
+      "age",
+      0.0774
+    ],
+    [
+      "parity_wealth_risk",
+      0.0686
+    ],
+    [
+      "wealth_index",
+      0.051
+    ],
+    [
+      "total_children_ever_born",
+      0.039
+    ],
+    [
+      "anc_provider_nurse",
+      0.0384
+    ],
+    [
+      "education_level",
+      0.0349
+    ],
+    [
+      "anc_iron_tablets",
+      0.034
+    ],
+    [
+      "residence",
+      0.0298
+    ],
+    [
+      "anc_late_entry",
+      0.0248
+    ],
+    [
+      "married",
+      0.0217
+    ],
+    [
+      "anc_4plus",
+      0.0213
+    ],
+    [
+      "anc_any",
+      0.0132
+    ],
+    [
+      "advanced_maternal_age",
+      0.0127
+    ],
+    [
+      "anc_dropout",
+      0.0083
+    ],
+    [
+      "late_and_dropout",
+      0.0066
+    ],
+    [
+      "anc_provider_doc",
+      0.0066
+    ],
+    [
+      "adolescent",
+      0.0008
+    ]
+  ]
+}
