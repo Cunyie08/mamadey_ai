@@ -67,8 +67,10 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .log{margin-top:16px}
 .log table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
 .log td,.log th{border-bottom:1px solid var(--line);padding:6px 4px;text-align:left}
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:14px}
-@media (max-width:700px){.steps{grid-template-columns:1fr}}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:14px}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.soon{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-ink);font-weight:600}
 .step{border-top:3px solid var(--gold);padding-top:10px}
 .step b{display:block;font-family:var(--display);font-size:18px;margin-bottom:4px}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:16px 0}
@@ -89,18 +91,22 @@ footer{border-top:1px solid var(--line);padding-block:24px 40px;color:var(--mute
 <div class="wrap hero">
   <div class="tag">Maternal health · Community health workers</div>
   <h1>Find the high-risk pregnancy <em>before</em> it becomes an emergency.</h1>
-  <p class="lede">Many pregnant women in Nigeria stop antenatal care early and give birth at home, where no clinic record sees them. MamaDey AI gives community health workers a quick risk check during a home visit, explains the result in plain words, and says when to refer.</p>
+  <p class="lede">Community health workers are sent to find pregnant women with no list and no priorities, like looking for a needle in a haystack. MamaDey AI registers women at antenatal clinics and women's groups, classifies their risk, and tells health workers who to visit first, including women who have stopped coming to care.</p>
 </div>
 
 <section id="demo"><div class="wrap grid">
   <div class="device" aria-labelledby="tool-title">
-    <h3 id="tool-title">Home visit screening</h3>
-    <p class="note">Working prototype. The form is filled with an example visit; change any answer and press Check risk. Nothing you enter leaves this device.</p>
+    <h3 id="tool-title">Register and check risk</h3>
+    <p class="note">Working prototype, for a registration officer at an antenatal clinic or a community health worker at a women's group meeting. The form is filled with an example; change any answer and press Check risk. Nothing you enter leaves this device.</p>
     <form id="visit" novalidate>
       <label class="check"><input type="checkbox" id="consent" checked> The woman agreed to this screening. Use an ID number, not her name.</label>
       <div class="row">
         <label for="wid">Woman's ID<input type="text" id="wid" value="OG-ADO-0142" autocomplete="off"></label>
         <label for="age">Age (years)<input type="number" id="age" min="12" max="55" value="19"></label>
+      </div>
+      <div class="row">
+        <label for="where">Registered at<select id="where"><option selected>Antenatal clinic</option><option>Women's group meeting</option></select></label>
+        <label for="lang">Preferred language<select id="lang"><option selected>Yoruba</option><option>English</option><option>Pidgin</option><option>Hausa</option><option>Igbo</option></select></label>
       </div>
       <fieldset><legend>Household</legend>
         <div class="row">
@@ -137,8 +143,8 @@ footer{border-top:1px solid var(--line);padding-block:24px 40px;color:var(--mute
   <div>
     <div class="result" id="result" aria-live="polite"></div>
     <div class="log">
-      <h3 style="font-size:18px">Women screened on this device</h3>
-      <p class="note">A supervisor list for follow-up. Stored only in this browser.</p>
+      <h3 style="font-size:18px">Health worker's follow-up list</h3>
+      <p class="note">Priority visits first. Stored only in this browser.</p>
       <table><thead><tr><th>ID</th><th>Date</th><th>Result</th></tr></thead><tbody id="logbody"></tbody></table>
       <button class="ghost" type="button" id="clearlog" style="margin-top:10px">Clear list</button>
     </div>
@@ -148,9 +154,10 @@ footer{border-top:1px solid var(--line);padding-block:24px 40px;color:var(--mute
 <section><div class="wrap">
   <h2>How it works</h2>
   <div class="steps">
-    <div class="step"><b>Ask</b>The health worker answers about fifteen questions a woman can answer at home: her age, past births, and the antenatal care she has had so far.</div>
-    <div class="step"><b>Score</b>A machine learning model trained on Nigeria Demographic and Health Survey data estimates her risk and names the factors that raise it most.</div>
-    <div class="step"><b>Act</b>High-risk women are flagged for referral to the nearest primary health centre, and every screening creates a digital record, even for a woman who never reaches a clinic.</div>
+    <div class="step"><b>Register</b>At the antenatal clinic, a registration officer records each woman's details, the tests already taken and her preferred language. Community health workers also register pregnant women at women's group meetings.</div>
+    <div class="step"><b>Classify</b>A machine learning model trained on Nigeria Demographic and Health Survey data classifies her risk and explains the main factors in plain words.</div>
+    <div class="step"><b>Follow up</b>High-risk women, and women who miss visits, go onto the health worker's follow-up list, so home visits go where they matter most.</div>
+    <div class="step"><b>Check in</b><span class="soon">Phase two, in design</span><br>A 30-second automated call or USSD check-in in her language. Symptoms alert her health worker; danger signs trigger urgent referral.</div>
   </div>
 </div></section>
 
@@ -174,6 +181,7 @@ footer{border-top:1px solid var(--line);padding-block:24px 40px;color:var(--mute
   <div>
     <h2>Who is building it</h2>
     <p><b>Kanyisola Fagbayi</b>, founder and lead engineer. Data scientist and AI engineer with seven years in the Ogun State Government running monitoring for social programmes. MSc Data Science, University of East London; alumna of the Bosun Tijani Foundation AI Engineering Fellowship with the Nigerian Communications Commission.</p>
+    <p><b>David Ekpo</b>, technical lead (AI engineering). AI engineer working across machine learning, natural language processing and large language models, deploying models with Python, FastAPI and PyTorch. Leads model deployment and the offline field app. <a href="https://github.com/dekpo23" target="_blank" rel="noopener">GitHub</a></p>
     <p>Contact: <span id="email">kanyinsola.fagbayi@gmail.com</span> <button class="ghost copy" type="button" id="copyemail">Copy</button></p>
   </div>
 </div></section>
@@ -222,7 +230,7 @@ function render(a,p){
   const res=$('result');
   res.innerHTML='';
   const h=document.createElement('div');
-  h.innerHTML=`<span class="band ${high?'high':'low'}">${high?'Higher risk: refer':'Lower risk: routine follow-up'}</span>`+
+  h.innerHTML=`<span class="band ${high?'high':'low'}">${high?'Higher risk: priority follow-up':'Lower risk: routine follow-up'}</span>`+
    `<div class="meter" role="img" aria-label="Risk relative to the referral line"><i style="width:${pct}%;background:var(${high?'--high':'--ok'})"></i><i style="left:50%;width:2px;background:var(--ink)"></i></div>`+
    `<div class="note">The black line marks the referral threshold.</div>`;
   res.appendChild(h);
@@ -230,7 +238,7 @@ function render(a,p){
     const ul=document.createElement('ul');r.top.forEach(x=>{const li=document.createElement('li');li.textContent=x.label;ul.appendChild(li)});t.appendChild(ul);res.appendChild(t)}
   if(r.ctx.length){const c=document.createElement('p');c.className='note';c.style.marginTop='8px';c.textContent='Also noted: '+r.ctx.join(', ')+'.';res.appendChild(c)}
   const act=document.createElement('p');act.className='action';
-  act.textContent=high?'Refer her to the nearest primary health centre this week, and visit again within two weeks.':'Encourage at least four antenatal visits, and screen again at your next visit.';
+  act.textContent=high?'Added to the priority list: a community health worker should visit her this week, and a nurse or doctor should review her at her next antenatal visit.':'Routine care: remind her of her next antenatal visit. If she misses it, she moves onto the follow-up list.';
   res.appendChild(act);
   return high;
 }
@@ -240,8 +248,8 @@ function saveLog(l){try{localStorage.setItem(KEY,JSON.stringify(l))}catch(e){}}
 let log=loadLog();
 function drawLog(){const b=$('logbody');b.innerHTML='';
   const rows=log.length?log:[{id:'OG-ADO-0118',date:'Example',high:true},{id:'OG-ADO-0121',date:'Example',high:false}];
-  rows.slice(-8).reverse().forEach(e=>{const tr=document.createElement('tr');
-    tr.innerHTML=`<td></td><td></td><td><span class="band ${e.high?'high':'low'}" style="font-size:12px;padding:2px 8px">${e.high?'Refer':'Routine'}</span></td>`;
+  rows.slice(-8).reverse().sort((x,y)=>y.high-x.high).forEach(e=>{const tr=document.createElement('tr');
+    tr.innerHTML=`<td></td><td></td><td><span class="band ${e.high?'high':'low'}" style="font-size:12px;padding:2px 8px">${e.high?'Visit this week':'Routine'}</span></td>`;
     tr.children[0].textContent=e.id;tr.children[1].textContent=e.date;b.appendChild(tr)})}
 function syncMonth(){$('month').disabled=(+$('visits').value||0)===0}
 $('visits').addEventListener('input',syncMonth);
